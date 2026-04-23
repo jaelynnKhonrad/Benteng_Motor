@@ -1,5 +1,5 @@
 .login_regis{
-    background: linear-gradient(to bottom, #003366, #ff791f) no-repeat;
+    background: linear-gradient(to bottom, #00531e, #ffffff) no-repeat;
     height: 100vh;
     overflow: hidden;
 }
@@ -23,7 +23,7 @@ img{
 }
 
 .login_regis h2{
-    color: #003366;
+    color: #00531e;
     text-align: center;
     font-size: 2.5em;
     margin-top: 25px;
@@ -36,7 +36,7 @@ img{
     margin-bottom: 20px;
     border-radius: 20px;
     padding: 0 18px;
-    border-color: #ff791f;
+    border-color: #00531e;
 }
 
 .login_regis input:focus{
@@ -53,7 +53,7 @@ img{
     width: 100px;
     height: 35px;
     border-radius: 30px;
-    background-color: #3399FF;
+    background-color: #ffffff;
     display: block;
     margin: 0 auto;
     cursor: pointer;
@@ -62,7 +62,7 @@ img{
 }
 
 .login_regis button:hover{
-    background-color: #ff791f;
+    background-color: #00531e;
     color: black;
     border-color: white;
     transform: translateY(-2px); /* naik sedikit saat hover */
@@ -74,7 +74,7 @@ img{
 }
 
 .login_regis a{
-    color: #003366;
+    color: #00531e;
     font-weight: bold;
 }
 
@@ -110,7 +110,7 @@ img{
 }
 
 .dashboard{
-    background: linear-gradient(to bottom, #003366, #ff791f) no-repeat;
+    background-color: #00531e;
     height: 100vh;
     overflow: hidden;
     color: white;
@@ -202,8 +202,7 @@ img{
 }
 
 .inventory{
-    background: url("/picture/inventory.png") rgba(0, 0, 0, 0.15); 
-    background-blend-mode: darken;
+    background-color: #6395ea; 
     background-size: cover;
     overflow: hidden;
     color: white;
@@ -344,7 +343,7 @@ img{
 }
 
 .transaksi{
-    background: url("/picture/transaksi.jpg"); 
+    background-color: #e5c58d; 
     background-size: cover;
     color: black;
 }
@@ -405,12 +404,12 @@ img{
 }
 
 .transaksi table th{
-    background-color: #ff791f;
+    background-color: #ae915d;
 }
 
 .transaksi table td{
     text-align: center;
-    background-color: #ffb81f;
+    background-color: #ffffff;
     color: black;
 }
 

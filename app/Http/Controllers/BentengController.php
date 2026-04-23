@@ -106,19 +106,19 @@ class BentengController extends Controller
     }
 
     public function transaksi() {
+        if (!Session::has('email')) return redirect('/');
+    
         $data = Transaksi::all();
         $totalPemasukan = Transaksi::where('tipe', 'pemasukan')->sum('total_harga');
         $totalPengeluaran = Transaksi::where('tipe', 'pengeluaran')->sum('total_harga');
+    
         return view('transaksi', compact('data', 'totalPemasukan', 'totalPengeluaran'));
     }
-
+    
     public function tambahTransaksi() {
+        if (!Session::has('email')) return redirect('/');
+        
         return view('tambah_transaksi');
-    }
-
-    public function simpanTransaksi(Request $request) {
-        Transaksi::create($request->all());
-        return redirect('/transaksi')->with('success', 'Transaksi ditambahkan');
     }
 
     public function editTransaksi($id) {
@@ -126,13 +126,47 @@ class BentengController extends Controller
         return view('edit_transaksi', compact('transaksi'));
     }
 
-    public function updateTransaksi(Request $request, $id) {
-        Transaksi::findOrFail($id)->update($request->all());
+    public function simpanTransaksi(Request $request) {
+        // Validasi input
+        $request->validate([
+            'tanggal_transaksi' => 'required|date',
+            'total_harga' => 'required|numeric',
+            'pesan' => 'required|string',
+            'tipe' => 'required|in:pemasukan,pengeluaran'
+        ]);
+    
+        // Simpan data
+        Transaksi::create([
+            'tanggal_transaksi' => $request->tanggal_transaksi,
+            'total_harga' => $request->total_harga,
+            'pesan' => $request->pesan,
+            'tipe' => $request->tipe,
+        ]);
+    
+        // Redirect dengan pesan sukses
+        return redirect('/transaksi')->with('success', 'Transaksi berhasil ditambahkan!');
+    }
+
+    public function updateTransaksi(Request $request, $id)
+    {
+        $request->validate([
+            'tanggal_transaksi' => 'required|date',
+            'total_harga' => 'required|numeric',
+            'pesan' => 'required|string',
+            'tipe' => 'required|in:pemasukan,pengeluaran'
+        ]);
+
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->update($request->all());
+
         return redirect('/transaksi')->with('success', 'Transaksi diupdate');
     }
 
-    public function hapusTransaksi($id) {
-        Transaksi::findOrFail($id)->delete();
+    public function hapusTransaksi($id)
+    {
+        $transaksi = Transaksi::findOrFail($id);
+        $transaksi->delete();
+
         return redirect('/transaksi')->with('success', 'Transaksi dihapus');
     }
 
